@@ -1,17 +1,16 @@
 using NUnit.Framework;
 
-namespace Tests
+namespace Mocking.Tests
 {
-    [TestFixture]
-    public class DatabaseTests
+    public class Tests
     {
-       [Test]
+        [SetUp]
         public void Setup()
         {
         }
 
         [Test]
-        public void Database()
+        public void Test1()
         {
             Assert.Pass();
         }
