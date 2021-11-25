@@ -13,7 +13,24 @@ namespace Skeleton.Tests
             axe.Attack(dummy);
             var result = dummy.Health;
             Assert.That(result, Is.EqualTo(5));
-
         }
+        [Test]
+        public void Dummy_ThrowsAnExceptionIfAttackedWhenIsDead_ReturnFalse()
+        {
+            Dummy dummy = new Dummy(0, 0);
+            Assert.That(() => dummy.TakeAttack(5), Throws.InvalidOperationException);
+        }
+        [Test]
+        public void Dummy_CanGiveExpiriansWhenIsDead_ReturnTrue()
+        {
+            Dummy dummy = new Dummy(0, 2);
+            Assert.That(() => dummy.GiveExperience(), Is.EqualTo(2));
+        }
+        [Test]
+        public void Dummy_CanGiveExpiriansWhenIsAlive_ReturnFolse()
+        {
+            Dummy dummy = new Dummy(2, 2);
+            Assert.That(() => dummy.GiveExperience(), Throws.InvalidOperationException);
+        } 
     }
 }
