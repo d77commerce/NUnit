@@ -46,5 +46,14 @@ namespace Database.Tests
 
             Assert.That(() => database.Remove(), Throws.InvalidOperationException);
         }
+        [Test]
+        public void Fetch_CopyArray_ReturnNewArrey()
+        {
+            Database database = new Database();
+            database.Add(2);
+            database.Add(2);
+
+            Assert.That(database.Fetch(), Is.Not.Empty);
+        }
     }
 }
