@@ -1,4 +1,6 @@
 using NUnit.Framework;
+using System;
+using System.Linq;
 
 namespace ExtendedDatabase.Tests
 {
@@ -6,6 +8,9 @@ namespace ExtendedDatabase.Tests
     {
         long id = 14;
         string name = "Ivan";
+
+       
+
         [SetUp]
         public void Setup()
         {
@@ -33,6 +38,14 @@ namespace ExtendedDatabase.Tests
 
         }
         [Test]
+        public void Remuve_FromDatabase()
+        {
+            ExtendedDatabase extendedDatabase = new ExtendedDatabase();
+            Person person = new Person(id, name);
+            extendedDatabase.Add(person);
+            Assert.That(() => extendedDatabase.Remove(), Is.True);
+        }
+        [Test]
         public void FindByUsername_PresentByUsername_ThrowExceotion()
         {
             ExtendedDatabase extendedDatabase = new ExtendedDatabase();
@@ -56,6 +69,14 @@ namespace ExtendedDatabase.Tests
             Person person = new Person(id, name);
             extendedDatabase.Add(person);
             Assert.That(() => extendedDatabase.FindById(12345666), Throws.InvalidOperationException);
+        }
+        [Test]
+        public void FindById_PresentByNegativeId_ThrowExceotion()
+        {
+            ExtendedDatabase extendedDatabase = new ExtendedDatabase();
+            Person person = new Person(id, name);
+            extendedDatabase.Add(person);
+            Assert.That(() => extendedDatabase.FindById(-12666), Throws.Exception);
         }
     }
 }
